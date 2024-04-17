@@ -8,9 +8,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class ProducerDemo {
+public class ProducerDemoWithKeys {
 
-    private static final Logger log = LoggerFactory.getLogger(ProducerDemo.class.getSimpleName());
+    private static final Logger log = LoggerFactory.getLogger(ProducerDemoWithKeys.class.getSimpleName());
+
+    //todo: fazer producer com keys e topico com mais de uma partição -> mesma key vai para mesma partição
+    // é uma maneira de ordenar as mensagens pra um id
+
+    //todo: colocar o callback igual no video
 
     public static void main(String[] args) {
         try (var producer = new KafkaProducer<String, String>(setProperties())) {
@@ -30,4 +35,5 @@ public class ProducerDemo {
 
 }
 
-// kafka-topics --bootstrap-server localhost:9092 --topic demo_java --describe
+// consumer pra conferir as mensagens enviadas
+// kafka-console-consumer --bootstrap-server localhost:9092 --topic demo_java --from-beginning
